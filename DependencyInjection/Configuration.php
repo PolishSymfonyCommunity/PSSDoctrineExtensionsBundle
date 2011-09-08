@@ -25,14 +25,20 @@ class Configuration
         $rootNode
                 ->children()
                     ->arrayNode('blameable')
-                        ->canBeUnset()
                         ->children()
-                            ->scalarNode('user_class')->isRequired()->cannotBeEmpty()->end()
+                            ->scalarNode('user_class')->end()
+                            ->arrayNode('drivers')
+                                ->addDefaultsIfNotSet()
+                                ->children()
+                                    ->booleanNode('orm')->defaultValue(true)->end()
+                                    ->booleanNode('mongodb')->defaultValue(false)->end()
+                                ->end()
+                            ->end()
                         ->end()
                     ->end()
                 ->end();
 
         return $treeBuilder->buildTree();
     }
-
+    
 }

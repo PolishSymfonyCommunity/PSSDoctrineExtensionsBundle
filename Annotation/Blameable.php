@@ -105,12 +105,19 @@ class Blameable implements DependencyInjection\ContainerAwareInterface
     public function __construct(array $values)
     {
         if (isset($values['userClass'])) {
-            $this->userClass = $values['userClass'];
+            if (class_exists($values['userClass'])) {
+                $refClass = new \ReflectionClass($values['userClass']);
+                if ($refClass->newInstance() instanceof \Symfony\Component\Security\Core\User\UserInterface) {
+                    $this->userClass = $values['userClass'];
+                } else {
+                    throw new \InvalidArgumentException('User class must implement \Symfony\Component\Security\Core\User\UserInterface');
+                }
+            }
         } else {
-            if ($this->container->get('pss.blameable.user_class') != null) {
+            if ($this->container->has('pss.blameable.user_class')) {
                 $this->userClass = get('pss.blameable.user_class');
             } else {
-                throw new \InvalidArgumentException('You must define a "userClass" attribute.');
+                throw new \InvalidArgumentException('You must define a "userClass" attribute or "user_class" config.');
             }
         }
         if (isset($values['creator'])) {

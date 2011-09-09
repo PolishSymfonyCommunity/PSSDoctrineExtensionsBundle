@@ -2,20 +2,18 @@
 
 namespace PSS\Bundle\DoctrineExtensionsBundle\Annotation;
 
-use Symfony\Component\DependencyInjection;
-
 /**
- * Blameable.
+ * Blameable annotation
  * 
  * @Annotation
  * 
  */
-class Blameable implements DependencyInjection\ContainerAwareInterface
+class Blameable
 {
     /**
      * @var string $userClass
      */
-    private $userClass = null;
+    private $userClass = NULL;
 
     /**
      * @var string $creator
@@ -26,16 +24,6 @@ class Blameable implements DependencyInjection\ContainerAwareInterface
      * @var string $updator
      */
     private $updater = 'updater';
-
-    /**
-     * @var DI Container $container
-     */
-    private $container;
-
-    public function setContainer(DependencyInjection\ContainerInterface $container = null)
-    {
-        $this->container = $container;
-    }
 
     /**
      * Gets the "userClass" option.
@@ -112,14 +100,10 @@ class Blameable implements DependencyInjection\ContainerAwareInterface
                 } else {
                     throw new \InvalidArgumentException('User class must implement \Symfony\Component\Security\Core\User\UserInterface');
                 }
-            }
-        } else {
-            if ($this->container->has('pss.blameable.user_class')) {
-                $this->userClass = get('pss.blameable.user_class');
             } else {
-                throw new \InvalidArgumentException('You must define a "userClass" attribute or "user_class" config.');
+                throw new \InvalidArgumentException('Class doesn\'t exist.');
             }
-        }
+        } 
         if (isset($values['creator'])) {
             $this->creator = $values['creator'];
         }

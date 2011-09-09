@@ -22,9 +22,8 @@ class BlameableListener extends AbstractBlameableListener
     public function prePersist(LifecycleEventArgs $args)
     {
         $obj = $args->getEntity();
-
         $blameable = $this->driver->getBlameableAnnotation($obj);
-        if ($blameable) {
+        if (null !== $blameable) {
             $this->updateEntity($obj, $blameable, true);
         }
     }
@@ -38,7 +37,6 @@ class BlameableListener extends AbstractBlameableListener
     public function preUpdate(PreUpdateEventArgs $args)
     {
         $obj = $args->getEntity();
-
         $blameable = $this->driver->getBlameableAnnotation($obj);
         if (null !== $blameable) {
             $this->updateEntity($obj, $blameable);

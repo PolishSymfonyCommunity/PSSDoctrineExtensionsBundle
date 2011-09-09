@@ -33,7 +33,7 @@ class PSSDoctrineExtensionsExtension extends Extension
                     throw new \InvalidArgumentException('User class must implement \Symfony\Component\Security\Core\User\UserInterface');
                 }
             } else {
-                throw new \InvalidArgumentException(printf('Class %s doesn\'t exist.', $config['blameable']['user_class']));
+                throw new \InvalidArgumentException('Class doesn\'t exist.');
             }
         }
 

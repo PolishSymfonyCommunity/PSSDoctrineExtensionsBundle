@@ -12,12 +12,15 @@
     
     <services>
         
-        <service id="pss.blameable.listener.orm" class="%pss.blameable.listener.orm.class%" public="true">
+        <service id="pss.blameable.listener.orm" class="%pss.blameable.listener.orm.class%" public="false">
             <call method="setDriver">
                 <argument type="service" id="pss.blameable.annotation_driver" />
             </call>
             <call method="setSecurityContext">
                 <argument type="service" id="security.context" />
+            </call>
+            <call method="setContainer">
+                <argument type="service" id="service_container" />
             </call>
         </service>
         <service id="pss.blameable.listener.mongodb" class="%pss.blameable.listener.mongodb.class%" public="false">
@@ -26,6 +29,9 @@
             </call>
             <call method="setSecurityContext">
                 <argument type="service" id="security.context" />
+            </call>
+            <call method="setContainer">
+                <argument type="service" id="service_container" />
             </call>
         </service>
         <service id="pss.blameable.annotation_driver" class="%pss.blameable.annotation_reader.class%" public="false">

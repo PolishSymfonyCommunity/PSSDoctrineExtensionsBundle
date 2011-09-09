@@ -39,6 +39,21 @@ abstract class AbstractBlameableListener implements EventSubscriber
     {
         $this->securityContext = $securityContext;
     }
+    
+    /**
+     * @var Container $container
+     */
+    protected $container;
+
+    /**
+     * Sets Container.
+     * 
+     * @param Container $container The DIC
+     */
+    public function setContainer($container)
+    {
+        $this->container = $container;
+    }
 
     /**
      * The events the listener is subscribed to.
@@ -61,6 +76,14 @@ abstract class AbstractBlameableListener implements EventSubscriber
      */
     protected function updateEntity($entity, $blameable, $create = false)
     {
+        if($blameable->getUserClass() === NULL) {
+            if ($this->container->hasParameter('pss.blameable.user_class')) {
+                $blameable->setUserClass($this->container->getParameter('pss.blameable.user_class'));
+            } else {
+                throw new \InvalidArgumentException('You must define a "userClass" attribute or "user_class" config.');
+            }
+        }
+        
         $user = $this->securityContext->getToken()->getUser();
         if($user != null) {
             if(method_exists($user, 'getId')) {

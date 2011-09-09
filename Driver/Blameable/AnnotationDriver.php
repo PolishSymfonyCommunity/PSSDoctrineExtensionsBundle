@@ -24,7 +24,7 @@ class AnnotationDriver
     {
         $this->reader = $reader;
     }
-    
+
     /**
      * 
      * 
@@ -32,14 +32,14 @@ class AnnotationDriver
      * @return Blameable The blameable annotation
      */
     public function getBlameableAnnotation($object)
-    {   
+    {
         if (!is_object($object)) {
             throw new \InvalidArgumentException();
         }
 
         $refClass = new \ReflectionClass($object);
 
-        return $this->reader->getClassAnnotation($refClass, 'PSS\Bundle\DoctrineExtensionBundle\Annotation\Blameable');    
+        return $this->reader->getClassAnnotation($refClass, 'PSS\Bundle\DoctrineExtensionsBundle\Annotation\Blameable');    
     }
-    
+
 }

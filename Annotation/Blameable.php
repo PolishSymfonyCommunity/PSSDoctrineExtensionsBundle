@@ -98,7 +98,7 @@ class Blameable
                 if ($refClass->newInstance() instanceof \Symfony\Component\Security\Core\User\UserInterface) {
                     $this->userClass = $values['userClass'];
                 } else {
-                    throw new \InvalidArgumentException('User class must implement \Symfony\Component\Security\Core\User\UserInterface');
+                    throw new \InvalidArgumentException('User class must implements \Symfony\Component\Security\Core\User\UserInterface');
                 }
             } else {
                 throw new \InvalidArgumentException('Class doesn\'t exist.');

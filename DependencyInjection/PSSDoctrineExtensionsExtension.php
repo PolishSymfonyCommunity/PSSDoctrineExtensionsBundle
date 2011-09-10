@@ -30,7 +30,7 @@ class PSSDoctrineExtensionsExtension extends Extension
                 if ($refClass->newInstance() instanceof \Symfony\Component\Security\Core\User\UserInterface) {
                     $container->setParameter('pss.blameable.user_class', $config['blameable']['user_class']);
                 } else {
-                    throw new \InvalidArgumentException('User class must implement \Symfony\Component\Security\Core\User\UserInterface');
+                    throw new \InvalidArgumentException('User class must implements \Symfony\Component\Security\Core\User\UserInterface');
                 }
             } else {
                 throw new \InvalidArgumentException('Class doesn\'t exist.');

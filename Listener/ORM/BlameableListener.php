@@ -10,12 +10,13 @@ use PSS\Bundle\DoctrineExtensionsBundle\Annotation\Blameable;
 /**
  * 
  *  Blameable ORM listener
+ * 
  */
 class BlameableListener extends AbstractBlameableListener
 {
 
     /**
-     * Checks for persisted object to update user
+     * Set object creator & updater
      *
      * @param LifecycleEventArgs $args The event arguments
      */
@@ -29,8 +30,7 @@ class BlameableListener extends AbstractBlameableListener
     }
 
     /**
-     * Update coordinates on objects being updated before update
-     * if they require changing
+     * Set object updater
      *
      * @param PreUpdateEventArgs $args The event arguments
      */

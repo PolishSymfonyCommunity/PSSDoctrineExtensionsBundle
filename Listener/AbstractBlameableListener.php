@@ -26,21 +26,6 @@ abstract class AbstractBlameableListener implements EventSubscriber
     }
     
     /**
-     * @var SecurityContext $securityContext
-     */
-    protected $securityContext;
-
-    /**
-     * Sets security context.
-     * 
-     * @param SecurityContext $securityContext The security context
-     */
-    public function setSecurityContext($securityContext)
-    {
-        $this->securityContext = $securityContext;
-    }
-    
-    /**
      * @var Container $container
      */
     protected $container;
@@ -84,13 +69,15 @@ abstract class AbstractBlameableListener implements EventSubscriber
             }
         }
         
-        $user = $this->securityContext->getToken()->getUser();
-        if($user != null) {
+        $user = $this->container->get('security.context')->getToken()->getUser();
+        if($user instanceof \Symfony\Component\Security\Core\User\UserInterface) {
             if(method_exists($user, 'getId')) {
                 $userId = $user->getId();
             } else {
                 $userId = $user->getUsername();
             }
+        } else {
+            $userId = NULL;
         }
 
         if ($create) {

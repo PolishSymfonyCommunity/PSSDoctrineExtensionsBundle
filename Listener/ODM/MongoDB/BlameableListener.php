@@ -38,7 +38,6 @@ class BlameableListener extends AbstractBlameableListener
     {
         $obj = $args->getDocument();
 
-        $geographical = $this->driver->getGeographicalAnnotation($obj);
         $blameable = $this->driver->getBlameableAnnotation($obj);
         if (null !== $blameable) {
             $this->updateEntity($obj, $blameable);

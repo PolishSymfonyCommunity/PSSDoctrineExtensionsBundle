@@ -34,7 +34,7 @@ class AnnotationDriver
     public function getBlameableAnnotation($object)
     {
         if (!is_object($object)) {
-            throw new \InvalidArgumentException();
+            throw new \InvalidArgumentException('Given argument is not object');
         }
 
         $refClass = new \ReflectionClass($object);

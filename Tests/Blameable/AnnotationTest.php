@@ -67,7 +67,7 @@ class AnnotationTest extends \PHPUnit_Framework_TestCase
                 ->with($this->isInstanceOf('\ReflectionClass'), $this->equalTo('PSS\Bundle\DoctrineExtensionsBundle\Annotation\Blameable'))
                 ->will($this->returnValue($this->blameableAnnotation));
 
-        $annot = $this->annotationDriver->getBlameableAnnotation($this->blameableEnity);
+        $annot = $this->annotationDriver->getBlameableAnnotation($this->blameableEnityNonStandard);
 
         $this->assertNotNull($annot);
         $this->assertEquals('creator_id', $annot->getCreator());

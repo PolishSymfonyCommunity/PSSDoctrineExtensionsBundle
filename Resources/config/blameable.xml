@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<container xmlns="http://symfony.com/schema/dic/services"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
+    
+    <parameters>
+        <parameter key="pss.blameable.listener.orm.class">PSS\Bundle\DoctrineExtensionsBundle\Listener\ORM\BlameableListener</parameter>
+        <parameter key="pss.blameable.listener.mongodb.class">PSS\Bundle\DoctrineExtensionsBundle\Listener\ODM\MongoDB\BlameableListener</parameter>
+        <parameter key="pss.blameable.annotation_reader.class">PSS\Bundle\DoctrineExtensionsBundle\Driver\Blameable\AnnotationDriver</parameter>
+    </parameters>
+    
+    <services>
+        
+        <service id="pss.blameable.listener.orm" class="%pss.blameable.listener.orm.class%" public="false">
+            <call method="setDriver">
+                <argument type="service" id="pss.blameable.annotation_driver" />
+            </call>
+            <call method="setContainer">
+                <argument type="service" id="service_container" />
+            </call>
+        </service>
+        <service id="pss.blameable.listener.mongodb" class="%pss.blameable.listener.mongodb.class%" public="false">
+            <call method="setDriver">
+                <argument type="service" id="pss.blameable.annotation_driver" />
+            </call>
+            <call method="setContainer">
+                <argument type="service" id="service_container" />
+            </call>
+        </service>
+        <service id="pss.blameable.annotation_driver" class="%pss.blameable.annotation_reader.class%" public="false">
+            <argument type="service" id="annotation_reader" />
+        </service>
+        
+    </services>
+        
+</container>

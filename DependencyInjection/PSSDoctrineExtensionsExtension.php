@@ -36,6 +36,11 @@ class PSSDoctrineExtensionsExtension extends Extension
                 throw new \InvalidArgumentException('Class doesn\'t exist.');
             }
         }
+        if (isset($config['blameable']['store_object'])) {
+            $container->setParameter('pss.blameable.store_object', $config['blameable']['store_object']);
+        } else {
+            $container->setParameter('pss.blameable.store_object', $config['blameable']['store_object']);
+        }
 
         foreach ($config['blameable']['drivers'] as $name => $enable) {
             if ($enable) {

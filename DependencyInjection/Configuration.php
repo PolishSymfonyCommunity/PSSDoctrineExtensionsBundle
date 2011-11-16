@@ -27,6 +27,7 @@ class Configuration
                     ->arrayNode('blameable')
                         ->children()
                             ->scalarNode('user_class')->end()
+                            ->booleanNode('store_object')->defaultValue(false)->end()
                             ->arrayNode('drivers')
                                 ->addDefaultsIfNotSet()
                                 ->children()
@@ -40,5 +41,5 @@ class Configuration
 
         return $treeBuilder->buildTree();
     }
-    
+
 }

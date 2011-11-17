@@ -4,9 +4,9 @@ namespace PSS\Bundle\DoctrineExtensionsBundle\Annotation;
 
 /**
  * Blameable annotation
- * 
+ *
  * @Annotation
- * 
+ *
  */
 class Blameable
 {
@@ -27,7 +27,7 @@ class Blameable
 
     /**
      * Gets the "userClass" option.
-     * 
+     *
      * @return string The "userClass" option
      */
     public function getUserClass()
@@ -37,7 +37,7 @@ class Blameable
 
     /**
      * Sets the "updater" option.
-     * 
+     *
      * @param type $value The "userClass" option
      */
     public function setUserClass($value)
@@ -47,7 +47,7 @@ class Blameable
 
     /**
      * Gets the "updater" option.
-     * 
+     *
      * @return string The "updater" option
      */
     public function getUpdater()
@@ -57,7 +57,7 @@ class Blameable
 
     /**
      * Sets the "updater" option.
-     * 
+     *
      * @param type $value The "updater" option
      */
     public function setUpdater($value)
@@ -67,7 +67,7 @@ class Blameable
 
     /**
      * Gets the "creator" option.
-     * 
+     *
      * @return string The "creator" option
      */
     public function getCreator()
@@ -77,7 +77,7 @@ class Blameable
 
     /**
      * Sets the "creator" option.
-     * 
+     *
      * @param type $value The "creator" option
      */
     public function setCreator($value)
@@ -87,7 +87,7 @@ class Blameable
 
     /**
      * Constructs a new instance of Blameable.
-     * 
+     *
      * @param array $values The option values
      */
     public function __construct(array $values)
@@ -103,7 +103,7 @@ class Blameable
             } else {
                 throw new \InvalidArgumentException('Class doesn\'t exist.');
             }
-        } 
+        }
         if (isset($values['creator'])) {
             $this->creator = $values['creator'];
         }

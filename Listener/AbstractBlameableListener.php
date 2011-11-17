@@ -6,7 +6,7 @@ use Doctrine\Common\EventSubscriber;
 
 /**
  * AbstractBlameableListener.
- * 
+ *
  */
 abstract class AbstractBlameableListener implements EventSubscriber
 {
@@ -17,14 +17,14 @@ abstract class AbstractBlameableListener implements EventSubscriber
 
     /**
      * Sets driver.
-     * 
+     *
      * @param Driver $driver The driver
      */
     public function setDriver($driver)
     {
         $this->driver = $driver;
     }
-    
+
     /**
      * @var Container $container
      */
@@ -32,7 +32,7 @@ abstract class AbstractBlameableListener implements EventSubscriber
 
     /**
      * Sets Container.
-     * 
+     *
      * @param Container $container The DIC
      */
     public function setContainer($container)
@@ -42,7 +42,7 @@ abstract class AbstractBlameableListener implements EventSubscriber
 
     /**
      * The events the listener is subscribed to.
-     * 
+     *
      * @return array An array
      */
     public function getSubscribedEvents()
@@ -54,7 +54,7 @@ abstract class AbstractBlameableListener implements EventSubscriber
     }
 
     /**
-     * 
+     *
      * @param Object $entity The entity
      * @param Blameable $blameable The blameable annotation
      * @param boolean $create
@@ -68,7 +68,7 @@ abstract class AbstractBlameableListener implements EventSubscriber
                 throw new \InvalidArgumentException('You must define a "userClass" attribute or "user_class" config.');
             }
         }
-        
+
         $user = $this->container->get('security.context')->getToken()->getUser();
         if($user instanceof \Symfony\Component\Security\Core\User\UserInterface) {
             if(method_exists($user, 'getId')) {
@@ -83,13 +83,25 @@ abstract class AbstractBlameableListener implements EventSubscriber
         if ($create) {
             // save user class name?
             // $entity->setUserClass($blameable->getUserClass());
-            
+
             $creatorSetter = 'set' . $blameable->getCreator();
-            $entity->$creatorSetter($userId);
+
+            // Test to store the object or the id/username
+            if ($this->container->getParameter('pss.blameable.store_object')) {
+                $entity->$creatorSetter($user ? $user : null);
+            } else {
+                $entity->$creatorSetter($userId);
+            }
         }
 
         $updaterSetter = 'set' . $blameable->getUpdater();
-        $entity->$updaterSetter($userId);
+
+        // Test to store the object or the id/username
+        if ($this->container->getParameter('pss.blameable.store_object')) {
+            $entity->$updaterSetter($user ? $user : null);
+        } else {
+            $entity->$updaterSetter($userId);
+        }
     }
 
 }

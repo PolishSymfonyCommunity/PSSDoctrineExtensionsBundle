@@ -7,8 +7,8 @@ Installation
     1. Add to deps
     
         [PSSDoctrineExtensionsBundle]
-            git=https://github.com/PolishSymfonySociety/PSSDoctrineExtensionsBundle.git
-            target=/bundles/PSS/Bundle/DoctrineExtensions
+		    git=https://github.com/PolishSymfonyCommunity/PSSDoctrineExtensionsBundle.git
+		    target=/bundles/PSS/Bundle/DoctrineExtensionsBundle
 
     2. Add PSS namespace to autoloader
     

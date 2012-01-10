@@ -6,9 +6,15 @@ Installation
 
     1. Add to deps
     
+<<<<<<< HEAD
           [PSSDoctrineExtensionsBundle]
 		      git=https://github.com/PolishSymfonyCommunity/PSSDoctrineExtensionsBundle.git
 		      target=/bundles/PSS/Bundle/DoctrineExtensionsBundle
+=======
+        [PSSDoctrineExtensionsBundle]
+            git=https://github.com/PolishSymfonySociety/PSSDoctrineExtensionsBundle.git
+            target=/bundles/PSS/Bundle/DoctrineExtensions
+>>>>>>> parent of c0b8f1b... Documentation fix #
 
     2. Add PSS namespace to autoloader
     

@@ -1,0 +1,31 @@
+{
+    "name": "polishsymfonycommunity/doctrine-extensions-bundle",
+    "type": "symfony-bundle",
+    "description": "Blameable behaviour for Doctrine2",
+    "keywords": ["doctrine2", "behaviours", "blameable"],
+    "homepage": "http://symfonylab.pl",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Polish Symfony Community",
+            "homepage": "http://symfonylab.pl/"
+        },
+        {
+            "name": "Contributors",
+            "homepage": "https://github.com/PolishSymfonyCommunity/PSSDoctrineExtensionsBundle/contributors"
+        }
+    ],
+    "require": {
+        "php": ">=5.3.2",
+        "symfony/framework-bundle": ">=2.0,<2.2-dev",
+        "doctrine/common": ">=2.0,<2.3-dev"
+    },
+    "suggest": {
+        "doctrine/orm": ">=2.0,<2.3-dev",
+        "doctrine/mongodb-odm": "*"
+    },
+    "autoload": {
+        "psr-0": { "PSS\\Bundle\\DoctrineExtensionsBundle": "" }
+    },
+    "target-dir": "PSS/Bundle/DoctrineExtensionsBundle"
+}
